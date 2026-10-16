@@ -1,0 +1,4121 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+/* =========================
+   GAME PAGE
+========================= */
+
+.game-page{
+    height:100vh;
+    min-height:100vh;
+    overflow:hidden;
+    padding:10px 14px;
+
+    background:
+        linear-gradient(
+            rgba(10,65,165,.10),
+            rgba(10,65,165,.10)
+        ),
+        url("../assets/backgrounds/drawarena-bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    font-family:"Nunito",sans-serif;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.game-topbar{
+    height:64px;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 18px;
+    margin-bottom:10px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f8fbff 100%
+        );
+
+    border:2px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        0 10px 24px rgba(9,35,80,.18),
+        inset 0 -3px 0 rgba(36,136,245,.06);
+}
+
+.game-topbar::after{
+    content:"";
+
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:-4px;
+
+    height:4px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.game-brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    position:relative;
+    z-index:2;
+}
+
+.game-logo{
+    display:flex;
+    align-items:center;
+}
+
+.game-logo-draw,
+.game-logo-arena{
+    font-family:"Fredoka",sans-serif;
+    font-size:28px;
+    font-weight:700;
+
+    letter-spacing:-1.7px;
+}
+
+.game-logo-draw{
+    color:#17335b;
+}
+
+.game-logo-arena{
+    color:#2388f5;
+}
+
+
+/* =========================
+   ROUND BADGE
+========================= */
+
+.round-badge{
+    min-width:68px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:4px 10px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5c8,
+            #ffe889
+        );
+
+    border:1.5px solid #ffc53c;
+
+    box-shadow:
+        0 3px 8px rgba(160,115,0,.10);
+}
+
+.round-label{
+    font-family:"Nunito",sans-serif;
+
+    font-size:8px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#a07814;
+}
+
+.round-badge strong{
+    margin-top:-1px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:14px;
+
+    color:#735300;
+}
+
+
+/* =========================
+   WORD
+========================= */
+
+.game-word-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    max-width:45%;
+
+    padding:5px 16px;
+
+    border-radius:12px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:26px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    color:#17283b;
+
+    text-align:center;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+.game-timer-wrap{
+    margin-left:auto;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.timer-label{
+    margin-bottom:1px;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:8px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#6894bd;
+}
+
+.game-timer{
+    min-width:58px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 9px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f6ff,
+            #d8eeff
+        );
+
+    border:2px solid #83cbff;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:22px;
+    font-weight:700;
+
+    color:#176ca7;
+
+    box-shadow:
+        0 4px 9px rgba(35,136,245,.12);
+}
+
+.timer-warning{
+    background:
+        linear-gradient(
+            145deg,
+            #ffe1e1,
+            #ffcaca
+        );
+
+    border-color:#ff7474;
+
+    color:#d52f2f;
+
+    animation:timerPulse .8s infinite alternate;
+}
+
+@keyframes timerPulse{
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.07);
+    }
+}
+
+
+/* =========================
+   MAIN GAME
+========================= */
+
+.game-layout{
+    height:calc(100vh - 84px);
+
+    display:grid;
+
+    grid-template-columns:
+        205px
+        minmax(0,1fr)
+        255px;
+
+    gap:12px;
+
+    align-items:stretch;
+}
+
+
+/* =========================
+   PLAYERS PANEL
+========================= */
+
+.players-panel{
+    height:100%;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #d9f1ff,
+            #cceaff
+        );
+
+    border:2px solid #69c5ff;
+
+    box-shadow:
+        0 10px 22px rgba(15,50,100,.15);
+
+    overflow:hidden;
+}
+
+
+/* PLAYER HEADING */
+
+.game-players-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:10px;
+}
+
+.game-players-heading h3{
+    margin:0;
+
+    font-family:"Fredoka",sans-serif;
+    font-size:20px;
+    font-weight:600;
+
+    color:#20354c;
+}
+
+.game-players-heading span{
+    min-width:28px;
+    height:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#2388f5;
+
+    color:#ffffff;
+
+    font-family:"Fredoka",sans-serif;
+    font-size:12px;
+    font-weight:700;
+}
+
+
+/* PLAYERS LIST */
+
+.players-list{
+    display:flex;
+    flex-direction:column;
+
+    gap:6px;
+
+    max-height:100%;
+
+    overflow-y:auto;
+
+    padding-right:3px;
+}
+
+
+/* PLAYER ROW */
+
+.player-row{
+    min-height:54px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    padding:6px;
+    border-radius:12px;
+    background:rgba(255,255,255,.94);
+    border:1px solid #adddf9;
+    transition:.15s ease;
+}
+
+.player-position{
+    width:18px;
+    flex-shrink:0;
+    text-align:center;
+    font-family:"Fredoka",sans-serif;
+    font-size:10px;
+    font-weight:600;
+    color:#65778d;
+}
+
+.player-row:nth-child(1) .player-position{
+    color:#b78100;
+    font-weight:700;
+}
+
+.player-row:nth-child(1){
+    box-shadow:
+        0 4px 12px rgba(255,190,35,.12);
+}
+
+.player-row:nth-child(2) .player-position{
+    color:#707b87;
+    font-weight:700;
+}
+
+.player-row:nth-child(3) .player-position{
+    color:#a95f2d;
+    font-weight:700;
+}
+
+
+/* AVATAR */
+
+.game-player-avatar{
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+    object-fit:cover;
+    border-radius:9px;
+    border:2px solid #75c9ff;
+    background:#ffffff;
+}
+
+/* =========================
+   PLAYER STATUS
+========================= */
+
+.player-status{
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:18px;
+}
+
+.drawer-icon{
+    flex-shrink:0;
+    font-size:14px;
+}
+
+
+/* CORRECT GUESS INDICATOR */
+
+.guessed-status{
+    width:22px;
+    height:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#30bd6b;
+
+    color:#ffffff;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:13px;
+    font-weight:700;
+
+    box-shadow:
+        0 3px 8px rgba(35,170,90,.20);
+}
+
+
+/* PLAYER WHO GUESSED CORRECTLY */
+
+.player-guessed{
+    border-color:#84d9a3;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3fff7,
+            #e3f9eb
+        );
+}
+
+.player-guessed .player-name{
+    color:#246742;
+}
+
+.player-guessed .player-score{
+    color:#4f8566;
+}
+
+
+/* DRAWER ALWAYS HAS PRIORITY */
+
+.current-drawer{
+    background:
+        linear-gradient(
+            135deg,
+            #fff5c9,
+            #ffed9d
+        );
+
+    border:2px solid #ffc438;
+
+    box-shadow:
+        0 4px 11px rgba(255,190,35,.16);
+}
+
+.current-drawer .player-name{
+    color:#624a00;
+}
+
+.current-drawer .player-score{
+    color:#8c6b09;
+}
+
+
+/* PLAYER INFO */
+
+.game-player-details{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:3px;
+}
+
+.player-name{
+    font-family:"Fredoka",sans-serif;
+
+    font-size:14px;
+    font-weight:600;
+
+    line-height:1.1;
+
+    color:#1f334a;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.player-score{
+    margin:0;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:11px;
+    line-height:1;
+
+    font-weight:700;
+
+    color:#60738a;
+}
+
+
+/* CURRENT DRAWER */
+
+.current-drawer{
+    background:
+        linear-gradient(
+            135deg,
+            #fff5c9,
+            #ffed9d
+        );
+
+    border:2px solid #ffc438;
+
+    box-shadow:
+        0 4px 11px rgba(255,190,35,.16);
+}
+
+.current-drawer .player-name{
+    color:#624a00;
+}
+
+.current-drawer .player-score{
+    color:#8c6b09;
+}
+
+.drawer-icon{
+    flex-shrink:0;
+
+    font-size:17px;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+.canvas-panel{
+    height:auto;
+
+    min-width:0;
+
+    padding:8px;
+
+    border-radius:20px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #f1f3f5,
+            #f1f3f5 10px,
+            #eceff2 10px,
+            #eceff2 20px
+        );
+
+    border:2px solid #d5dce4;
+
+    box-shadow:
+        0 10px 24px rgba(20,40,70,.16);
+
+    overflow:hidden;
+}
+
+.canvas-stage{
+    width:100%;
+
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.canvas-stage .canvas-wrapper{
+    width:100%;
+}
+
+
+/* =========================
+   WORD SELECTION OVERLAY
+========================= */
+
+.word-overlay{
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(34,65,126,.68),
+            rgba(14,30,65,.84)
+        );
+
+    backdrop-filter:blur(2px);
+}
+
+
+/* =========================
+   WORD SELECTION CARD
+========================= */
+
+.word-selection-card{
+    width:min(560px,92%);
+
+    padding:30px 24px 24px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    border:3px solid #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.99),
+            rgba(238,246,255,.98)
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.28);
+
+    text-align:center;
+}
+
+.word-selection-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+.word-selection-card::after{
+    content:"✦";
+
+    position:absolute;
+
+    top:15px;
+    right:19px;
+
+    font-size:24px;
+
+    color:#ffc434;
+
+    transform:rotate(15deg);
+}
+
+.word-selection-label{
+    margin:0 0 20px;
+
+    font-family:"Fredoka",sans-serif;
+    font-size:32px;
+    font-weight:600;
+
+    color:#203653;
+}
+
+
+/* WORD CHOICES */
+
+.word-options{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.word-choice-button{
+    min-width:130px;
+    min-height:50px;
+
+    padding:10px 18px;
+
+    border:2px solid #347ed6;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1f6ed2,
+            #184fa5
+        );
+
+    color:#ffffff;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:17px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 14px rgba(25,85,170,.22);
+
+    transition:.16s ease;
+}
+
+.word-choice-button:nth-child(2){
+    background:
+        linear-gradient(
+            145deg,
+            #8561e7,
+            #6843c7
+        );
+
+    border-color:#8a6ce0;
+}
+
+.word-choice-button:nth-child(3){
+    background:
+        linear-gradient(
+            145deg,
+            #e75f87,
+            #ca3c67
+        );
+
+    border-color:#e76b8e;
+}
+
+.word-choice-button:hover{
+    transform:
+        translateY(-3px)
+        scale(1.02);
+
+    box-shadow:
+        0 11px 20px rgba(25,85,170,.28);
+}
+
+.word-choice-button:active{
+    transform:scale(.98);
+}
+
+.word-selection-hint{
+    margin:18px 0 0;
+
+    font-size:12px;
+    font-weight:600;
+
+    color:#7a8797;
+}
+
+
+/* =========================
+   OTHER PLAYER CHOOSING
+========================= */
+
+.viewer-overlay{
+    text-align:center;
+}
+
+.choosing-player-card{
+    width:min(420px,90%);
+
+    padding:28px 30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98),
+            rgba(242,248,255,.98)
+        );
+
+    border:3px solid rgba(255,255,255,.96);
+
+    box-shadow:
+        0 18px 42px rgba(0,0,0,.25);
+
+    text-align:center;
+}
+
+.choosing-player-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+.choosing-pencil{
+    font-size:42px;
+
+    margin-bottom:5px;
+
+    animation:pencilFloat 1.7s ease-in-out infinite;
+}
+
+@keyframes pencilFloat{
+    0%,
+    100%{
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50%{
+        transform:
+            translateY(-6px)
+            rotate(5deg);
+    }
+}
+
+.choosing-player-card h2{
+    margin:0;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:30px;
+
+    color:#24384d;
+}
+
+.choosing-player-card p{
+    margin:5px 0 14px;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#708095;
+}
+
+.choosing-dots{
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:6px;
+}
+
+.choosing-dots span{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#2388f5;
+
+    animation:chooseBounce 1s infinite ease-in-out;
+}
+
+.choosing-dots span:nth-child(2){
+    background:#ffc434;
+
+    animation-delay:.15s;
+}
+
+.choosing-dots span:nth-child(3){
+    background:#ff5c8a;
+
+    animation-delay:.3s;
+}
+
+@keyframes chooseBounce{
+    0%,
+    60%,
+    100%{
+        transform:translateY(0);
+
+        opacity:.5;
+    }
+
+    30%{
+        transform:translateY(-6px);
+
+        opacity:1;
+    }
+}
+
+
+/* =========================
+   GUESSES PANEL
+========================= */
+
+.guesses-panel{
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #fff1bd,
+            #ffeaa2
+        );
+
+    border:2px solid #ffc53f;
+
+    box-shadow:
+        0 10px 22px rgba(70,50,10,.16);
+
+    overflow:hidden;
+}
+
+.guesses-panel h3{
+    margin:0 0 8px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:19px;
+
+    color:#283a4f;
+}
+
+
+/* GUESS LIST */
+
+.guesses-list{
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:5px;
+
+    padding-right:3px;
+
+    scroll-behavior:smooth;
+}
+
+.guess-message{
+    margin:0;
+
+    padding:7px 8px;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    line-height:1.3;
+
+    word-break:break-word;
+
+    transition:.15s ease;
+}
+
+.normal-message{
+    background:rgba(255,255,255,.62);
+
+    color:#29394b;
+
+    border:
+        1px solid rgba(210,176,70,.18);
+}
+
+.normal-message:nth-child(even){
+    background:rgba(255,255,255,.86);
+}
+
+.guess-message strong{
+    font-family:"Fredoka",sans-serif;
+
+    font-weight:600;
+
+    color:#24384d;
+}
+
+
+/* CORRECT GUESS */
+
+.correct-message{
+    background:rgba(255,255,255,.8);
+
+    border:
+        1px solid rgba(34, 240, 106, 0.774);
+
+    color:#29394b;
+}
+
+.correct-message strong{
+    color:#24384d;
+}
+
+.correct-text{
+    color:#41f78d;
+
+    font-family:"Nunito",sans-serif;
+
+    font-weight:700;
+}
+
+.guessed-correct-state{
+    padding:10px 12px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e2f9e9,
+            #c8f2d5
+        );
+
+    border:1px solid #7fd19a;
+
+    color:#18713c;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    box-shadow:
+        0 4px 10px rgba(42,180,100,.10);
+}
+
+/* =========================
+   GUESS INPUT
+========================= */
+
+.guess-input-block{
+    margin-top:7px;
+
+    padding-top:8px;
+
+    border-top:
+        1px solid rgba(111,85,15,.22);
+}
+
+.guess-input-wrap{
+    width:100%;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+
+    padding:
+        3px 4px 3px 12px;
+
+    border-radius:13px;
+
+    background:#ffffff;
+
+    border:2px solid #e5b538;
+
+    box-shadow:
+        0 5px 12px rgba(80,55,10,.10),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+    transition:.15s ease;
+}
+
+.guess-input-wrap:focus-within{
+    border-color:#2388f5;
+
+    box-shadow:
+        0 0 0 3px rgba(35,136,245,.12),
+        0 5px 12px rgba(80,55,10,.10);
+}
+
+.guess-input-wrap input{
+    flex:1;
+
+    min-width:0;
+    height:100%;
+
+    padding:0;
+
+    border:0;
+
+    outline:0;
+
+    background:transparent;
+
+    color:#26384b;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:12px;
+}
+
+.guess-input-wrap input::placeholder{
+    color:#9ba5b0;
+}
+
+.guess-input-wrap button{
+    width:34px;
+    height:34px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2997f7,
+            #1577e8
+        );
+
+    color:#ffffff;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 9px rgba(35,136,245,.22);
+
+    transition:.15s ease;
+}
+
+.guess-input-wrap button:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #1c8bf0,
+            #0d69d7
+        );
+
+    transform:translateX(1px);
+}
+
+.guess-input-wrap button:active{
+    transform:scale(.96);
+}
+
+.guess-waiting{
+    margin:0;
+
+    padding:8px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.55);
+
+    text-align:center;
+
+    font-size:11px;
+
+    color:#576577;
+}
+
+
+/* =========================
+   SCROLLBARS
+========================= */
+
+.players-list::-webkit-scrollbar,
+.guesses-list::-webkit-scrollbar{
+    width:5px;
+}
+
+.players-list::-webkit-scrollbar-track,
+.guesses-list::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.players-list::-webkit-scrollbar-thumb{
+    background:#78c8f8;
+
+    border-radius:10px;
+}
+
+.guesses-list::-webkit-scrollbar-thumb{
+    background:#dfb33c;
+
+    border-radius:10px;
+}
+
+/* =========================
+   TURN / ROUND TRANSITION
+========================= */
+
+.game-transition-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    pointer-events:none;
+
+    background:
+        rgba(20,42,85,.30);
+
+    backdrop-filter:
+        blur(2px);
+
+    animation:
+        transitionFadeIn .18s ease;
+}
+
+.game-transition-card{
+    min-width:290px;
+
+    max-width:90%;
+
+    padding:
+        24px 34px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef6ff
+        );
+
+    border:
+        3px solid #ffffff;
+
+    box-shadow:
+        0 18px 45px rgba(15,35,75,.28);
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    animation:
+        transitionPop .28s ease;
+}
+
+.game-transition-card::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    top:0;
+
+    height:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+.transition-pencil{
+    margin-bottom:5px;
+
+    font-size:40px;
+}
+
+.game-transition-card h2{
+    margin:0;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:28px;
+
+    font-weight:600;
+
+    color:#24384d;
+}
+
+@keyframes transitionFadeIn{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes transitionPop{
+    from{
+        opacity:0;
+
+        transform:
+            scale(.88)
+            translateY(10px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+@media(max-width:600px){
+
+    .game-transition-card{
+        min-width:0;
+
+        width:82%;
+
+        max-width:320px;
+
+        padding:
+            20px 18px;
+    }
+
+    .transition-pencil{
+        font-size:34px;
+    }
+
+    .game-transition-card h2{
+        font-size:23px;
+    }
+}
+
+/* =========================
+   END OF TURN WORD REVEAL
+========================= */
+
+.word-reveal-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:1100;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    pointer-events:none;
+
+    background:
+        rgba(15,32,67,.38);
+
+    backdrop-filter:blur(3px);
+}
+
+.word-reveal-card{
+    min-width:310px;
+
+    max-width:90%;
+
+    padding:26px 36px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:5px;
+
+    border-radius:22px;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef6ff
+        );
+
+    border:3px solid #ffffff;
+
+    box-shadow:
+        0 20px 48px rgba(10,30,70,.30);
+
+    animation:
+        wordRevealPop .28s ease;
+}
+
+.word-reveal-card::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    top:0;
+
+    height:7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+.word-reveal-small{
+    font-family:"Nunito",sans-serif;
+
+    font-size:13px;
+    font-weight:700;
+
+    color:#7c8998;
+}
+
+.word-reveal-card strong{
+    font-family:"Fredoka",sans-serif;
+
+    font-size:34px;
+    font-weight:700;
+
+    color:#213a59;
+}
+
+@keyframes wordRevealPop{
+
+    from{
+        opacity:0;
+
+        transform:
+            scale(.86)
+            translateY(12px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+@media(max-width:600px){
+
+    .word-reveal-card{
+        min-width:0;
+
+        width:82%;
+
+        max-width:320px;
+
+        padding:
+            22px 18px;
+    }
+
+    .word-reveal-card strong{
+        font-size:28px;
+    }
+}
+
+/* =========================
+   ROUND COMPLETE
+========================= */
+
+.round-complete-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:1150;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    pointer-events:none;
+
+    background:
+        rgba(15,34,72,.38);
+
+    backdrop-filter:
+        blur(3px);
+}
+
+.round-complete-card{
+    width:min(390px,88%);
+
+    padding:
+        28px 30px 25px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef6ff
+        );
+
+    border:3px solid #ffffff;
+
+    box-shadow:
+        0 20px 50px rgba(10,30,70,.30);
+
+    animation:
+        roundCompletePop .3s ease;
+}
+
+.round-complete-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5,
+            #ffc434,
+            #ff5c8a,
+            #42c984
+        );
+}
+
+.round-complete-icon{
+    margin-bottom:6px;
+
+    font-size:44px;
+
+    animation:
+        roundIconBounce .7s ease;
+}
+
+.round-complete-card h2{
+    margin:
+        0 0 5px;
+
+    font-family:
+        "Fredoka",
+        sans-serif;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#233b59;
+}
+
+.round-complete-card p{
+    margin:0;
+
+    font-family:
+        "Nunito",
+        sans-serif;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#748397;
+}
+
+@keyframes roundCompletePop{
+
+    from{
+        opacity:0;
+
+        transform:
+            scale(.86)
+            translateY(12px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+@keyframes roundIconBounce{
+
+    0%{
+        transform:
+            scale(.5);
+    }
+
+    60%{
+        transform:
+            scale(1.15);
+    }
+
+    100%{
+        transform:
+            scale(1);
+    }
+}
+
+@media(max-width:600px){
+
+    .round-complete-card{
+        width:82%;
+
+        max-width:320px;
+
+        padding:
+            23px 18px;
+    }
+
+    .round-complete-icon{
+        font-size:38px;
+    }
+
+    .round-complete-card h2{
+        font-size:24px;
+    }
+}
+
+/* =========================
+   GUESS PROGRESS
+========================= */
+
+.guesses-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:8px;
+
+    margin-bottom:6px;
+}
+
+.guesses-heading h3{
+    margin:0;
+}
+
+.guess-count{
+    min-width:38px;
+    height:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 7px;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    border:1px solid #e5bd4d;
+
+    color:#775a09;
+
+    font-family:"Fredoka",sans-serif;
+    font-size:11px;
+    font-weight:700;
+}
+
+.guess-progress-wrap{
+    margin-bottom:8px;
+
+    padding:7px 8px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.45);
+}
+
+.guess-progress-track{
+    width:100%;
+    height:6px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:rgba(127,96,17,.15);
+}
+
+.guess-progress-fill{
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #31bd69,
+            #65d98d
+        );
+
+    transition:
+        width .3s ease;
+}
+
+.guess-progress-text{
+    display:block;
+
+    margin-top:4px;
+
+    text-align:center;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:9px;
+    font-weight:700;
+
+    color:#74652e;
+}
+
+/* =========================
+   TEAM BATTLE
+========================= */
+
+.team-score-board{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px;
+
+    margin-bottom:9px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.70);
+
+    border:1px solid rgba(80,160,220,.20);
+}
+
+.team-score{
+    min-width:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:5px 4px;
+
+    border-radius:9px;
+}
+
+.team-score span{
+    font-family:"Nunito",sans-serif;
+
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:.8px;
+}
+
+.team-score strong{
+    margin-top:-1px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:17px;
+    font-weight:700;
+}
+
+.red-team-score{
+    background:#ffe5e8;
+    color:#c63a4e;
+}
+
+.blue-team-score{
+    background:#e2efff;
+    color:#246fc9;
+}
+
+.team-score-divider{
+    font-family:"Fredoka",sans-serif;
+
+    font-size:9px;
+    font-weight:700;
+
+    color:#8391a2;
+}
+
+
+/* PLAYER TEAM */
+
+.player-score-line{
+    display:flex;
+    align-items:center;
+
+    gap:5px;
+
+    min-width:0;
+}
+
+.player-team-badge{
+    padding:1px 5px;
+
+    border-radius:5px;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:7px;
+    font-weight:800;
+
+    line-height:1.4;
+}
+
+.red-player-team{
+    color:#b93649;
+    background:#ffe1e6;
+}
+
+.blue-player-team{
+    color:#2568b7;
+    background:#ddebff;
+}
+
+.player-name-line{
+    width:100%;
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:3px;
+}
+
+.player-name-line .player-name{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.you-badge{
+    flex-shrink:0;
+    padding:1px 4px;
+    border-radius:5px;
+    background:#2388f5;
+    color:#ffffff;
+    font-family:"Nunito",sans-serif;
+    font-size:6px;
+    font-weight:800;
+    letter-spacing:.2px;
+    line-height:1.3;
+}
+
+.sound-toggle{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    border:0;
+    border-radius:11px;
+
+    background:#eef6ff;
+
+    color:#23496f;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.15s ease;
+}
+
+.sound-toggle:hover{
+    background:#dceeff;
+    transform:translateY(-1px);
+}
+
+@media(max-width:600px){
+
+    .sound-toggle{
+        width:32px;
+        height:32px;
+
+        border-radius:9px;
+
+        font-size:15px;
+    }
+}
+/* =========================
+   TABLET / MEDIUM WIDTH
+========================= */
+
+@media(max-width:1100px){
+
+    .game-page{
+        height:auto;
+        min-height:100svh;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+
+        padding:10px;
+    }
+
+
+    /* TOP BAR */
+
+    .game-topbar{
+        height:62px;
+
+        margin-bottom:9px;
+
+        padding:0 14px;
+
+        border-radius:17px;
+    }
+
+    .game-brand{
+        gap:8px;
+    }
+
+    .game-logo-draw,
+    .game-logo-arena{
+        font-size:21px;
+    }
+
+    .round-badge{
+        min-width:62px;
+
+        padding:
+            3px 7px;
+    }
+
+    .round-badge strong{
+        font-size:13px;
+    }
+
+    .game-word-center{
+        max-width:42%;
+
+        padding:
+            3px 8px;
+
+        font-size:21px;
+
+        letter-spacing:2px;
+    }
+
+    .game-timer{
+        min-width:54px;
+
+        height:36px;
+
+        font-size:19px;
+    }
+
+
+    /* =========================
+       REFERENCE STYLE LAYOUT
+
+       CANVAS
+       ↓
+       PLAYERS | GUESSES
+    ========================= */
+
+    .game-layout{
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:9px;
+
+        align-items:stretch;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        width:100%;
+
+        min-width:0;
+        min-height:0;
+
+        padding:7px;
+
+        border-radius:17px;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        width:100%;
+
+        min-width:0;
+
+        height:400px;
+
+        padding:9px;
+
+        border-radius:17px;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        width:100%;
+
+        min-width:0;
+
+        height:400px;
+
+        padding:9px;
+
+        border-radius:17px;
+    }
+
+
+    /* PLAYERS */
+
+    .game-players-heading{
+        margin-bottom:7px;
+    }
+
+    .game-players-heading h3{
+        font-size:16px;
+    }
+
+    .game-players-heading span{
+        min-width:24px;
+        height:24px;
+
+        font-size:10px;
+    }
+
+    .players-list{
+        max-height:
+            calc(100% - 38px);
+
+        gap:5px;
+    }
+
+    .player-row{
+        min-height:48px;
+
+        padding:
+            5px 7px;
+
+        gap:6px;
+
+        border-radius:10px;
+    }
+
+    .player-position{
+        width:20px;
+
+        font-size:10px;
+    }
+
+    .game-player-avatar{
+        width:32px;
+        height:32px;
+
+        border-radius:9px;
+    }
+
+    .player-name{
+        font-size:13px;
+    }
+
+    .player-score{
+        font-size:10px;
+    }
+
+    .drawer-icon{
+        font-size:15px;
+    }
+
+    .guessed-status{
+        width:19px;
+        height:19px;
+
+        font-size:11px;
+    }
+
+
+    /* GUESSES */
+
+    .guesses-heading{
+        margin-bottom:5px;
+    }
+
+    .guesses-panel h3,
+    .guesses-heading h3{
+        font-size:16px;
+    }
+
+    .guess-count{
+        min-width:34px;
+        height:23px;
+
+        font-size:10px;
+    }
+
+    .guess-progress-wrap{
+        margin-bottom:6px;
+
+        padding:
+            6px 7px;
+    }
+
+    .guess-progress-text{
+        font-size:8px;
+    }
+
+    .guesses-list{
+        gap:4px;
+    }
+
+    .guess-message{
+        padding:
+            6px 7px;
+
+        font-size:11px;
+    }
+
+    .guess-input-block{
+        margin-top:5px;
+
+        padding-top:6px;
+    }
+
+    .guess-input-wrap{
+        height:39px;
+    }
+
+    .guess-input-wrap input{
+        font-size:11px;
+    }
+
+    .guess-input-wrap button{
+        width:31px;
+        height:31px;
+
+        font-size:15px;
+    }
+
+
+    /* WORD SELECT */
+
+    .word-selection-card{
+        width:min(500px,94%);
+
+        padding:
+            25px 18px 20px;
+    }
+
+    .word-selection-label{
+        font-size:27px;
+    }
+
+    .word-choice-button{
+        min-width:110px;
+
+        min-height:45px;
+
+        font-size:15px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   REFERENCE: SKRIBBL-LIKE
+========================= */
+
+@media(max-width:600px){
+
+    .game-page{
+        width:100%;
+
+        min-height:100svh;
+
+        padding:4px;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+
+    /* =========================
+       COMPACT TOP BAR
+    ========================= */
+
+    .game-topbar{
+        height:54px;
+
+        margin-bottom:5px;
+
+        padding:
+            0 7px;
+
+        border-radius:13px;
+    }
+
+    .game-topbar::after{
+        left:8px;
+        right:8px;
+
+        bottom:-3px;
+
+        height:3px;
+    }
+
+
+    .game-brand{
+        gap:5px;
+    }
+
+
+    .game-logo-draw,
+    .game-logo-arena{
+        font-size:14px;
+
+        letter-spacing:-1px;
+    }
+
+
+    .round-badge{
+        display:flex;
+
+        min-width:50px;
+
+        padding:
+            2px 5px;
+
+        border-radius:9px;
+    }
+
+    .round-label{
+        font-size:6px;
+    }
+
+    .round-badge strong{
+        font-size:11px;
+    }
+
+
+    .game-word-center{
+        max-width:44%;
+
+        padding:2px 4px;
+
+        font-size:16px;
+
+        letter-spacing:1.5px;
+    }
+
+
+    .timer-label{
+        display:none;
+    }
+
+
+    .game-timer{
+        min-width:43px;
+        height:33px;
+
+        padding:
+            0 5px;
+
+        border-radius:9px;
+
+        font-size:15px;
+    }
+
+
+    /* =========================
+       MOBILE LAYOUT
+
+       CANVAS
+       PLAYERS | GUESSES
+
+       DO NOT switch to
+       a single column.
+    ========================= */
+
+    .game-layout{
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:4px;
+
+        align-items:stretch;
+    }
+
+
+    /* =========================
+       CANVAS
+    ========================= */
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        width:100%;
+
+        min-height:0;
+
+        padding:4px;
+
+        border-radius:10px;
+
+        border-width:1px;
+
+        box-shadow:
+            0 5px 12px rgba(20,40,70,.12);
+    }
+
+
+    .canvas-stage{
+        width:100%;
+    }
+
+
+    /*
+     * IMPORTANT:
+     * Do not force a separate canvas height.
+     * DrawingCanvas keeps its 800x500
+     * coordinate ratio.
+     */
+
+
+    /* =========================
+       PLAYERS PANEL
+    ========================= */
+
+    .players-panel{
+        grid-area:players;
+
+        width:100%;
+
+        min-width:0;
+
+        height:430px;
+
+        padding:
+            6px 5px;
+
+        border-radius:10px;
+
+        border-width:1.5px;
+
+        box-shadow:
+            0 5px 12px rgba(15,50,100,.12);
+    }
+
+
+    .game-players-heading{
+        margin-bottom:5px;
+
+        padding:
+            0 2px;
+    }
+
+
+    .game-players-heading h3{
+        font-size:12px;
+    }
+
+
+    .game-players-heading span{
+        min-width:20px;
+        height:20px;
+
+        font-size:8px;
+    }
+
+
+    .players-list{
+        max-height:
+            calc(100% - 29px);
+
+        gap:3px;
+
+        padding-right:1px;
+    }
+
+
+    .player-row{
+        min-height:48px;
+
+        padding:
+            4px 4px;
+
+        gap:4px;
+
+        border-radius:7px;
+    }
+
+
+    .player-position{
+        width:17px;
+
+        font-size:9px;
+    }
+
+
+    .game-player-avatar{
+        width:30px;
+        height:30px;
+
+        border-radius:7px;
+
+        border-width:1.5px;
+    }
+
+
+    .game-player-details{
+        gap:2px;
+    }
+
+
+    .player-name{
+        font-size:11px;
+
+        line-height:1.05;
+    }
+
+
+    .player-score{
+        font-size:9px;
+    }
+
+
+    .player-status{
+        min-width:16px;
+    }
+
+
+    .drawer-icon{
+        font-size:13px;
+    }
+
+
+    .guessed-status{
+        width:17px;
+        height:17px;
+
+        font-size:9px;
+    }
+
+
+    /* TEAM */
+
+    .team-score-board{
+        padding:4px;
+
+        gap:3px;
+
+        margin-bottom:5px;
+
+        border-radius:8px;
+    }
+
+
+    .team-score{
+        padding:
+            3px 2px;
+    }
+
+
+    .team-score span{
+        font-size:6px;
+    }
+
+
+    .team-score strong{
+        font-size:12px;
+    }
+
+
+    .team-score-divider{
+        font-size:7px;
+    }
+
+
+    .player-team-badge{
+        padding:
+            1px 3px;
+
+        font-size:5px;
+    }
+
+
+    /* =========================
+       GUESSES PANEL
+    ========================= */
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        width:100%;
+
+        min-width:0;
+
+        height:430px;
+
+        padding:
+            6px 5px 5px;
+
+        border-radius:10px;
+
+        border-width:1.5px;
+
+        box-shadow:
+            0 5px 12px rgba(70,50,10,.12);
+    }
+
+
+    .guesses-heading{
+        margin-bottom:4px;
+    }
+
+
+    .guesses-panel h3,
+    .guesses-heading h3{
+        margin:0;
+
+        font-size:12px;
+    }
+
+
+    .guess-count{
+        min-width:30px;
+        height:20px;
+
+        padding:
+            0 4px;
+
+        border-radius:7px;
+
+        font-size:8px;
+    }
+
+
+    .guess-progress-wrap{
+        margin-bottom:4px;
+
+        padding:
+            4px 5px;
+
+        border-radius:7px;
+    }
+
+
+    .guess-progress-track{
+        height:4px;
+    }
+
+
+    .guess-progress-text{
+        margin-top:2px;
+
+        font-size:6px;
+    }
+
+
+    .guesses-list{
+        flex:1;
+
+        min-height:0;
+
+        gap:2px;
+
+        padding-right:1px;
+    }
+
+
+    .guess-message{
+        padding:
+            4px 4px;
+
+        border-radius:5px;
+
+        font-size:9px;
+
+        line-height:1.2;
+    }
+
+
+    .guess-message strong{
+        font-size:9px;
+    }
+
+
+    /* =========================
+       GUESS INPUT AT BOTTOM
+    ========================= */
+
+    .guess-input-block{
+        flex-shrink:0;
+
+        margin-top:3px;
+
+        padding-top:4px;
+    }
+
+
+    .guess-input-wrap{
+        height:34px;
+
+        padding:
+            2px 3px 2px 7px;
+
+        border-radius:8px;
+
+        border-width:1.5px;
+    }
+
+
+    .guess-input-wrap input{
+        font-size:9px;
+    }
+
+
+    .guess-input-wrap button{
+        width:28px;
+        height:28px;
+
+        border-radius:7px;
+
+        font-size:13px;
+    }
+
+
+    .guess-waiting,
+    .guessed-correct-state{
+        padding:
+            6px 5px;
+
+        border-radius:7px;
+
+        font-size:8px;
+    }
+
+
+    /* =========================
+       WORD SELECTION
+    ========================= */
+
+    .word-overlay{
+        padding:7px;
+
+        border-radius:8px;
+    }
+
+
+    .word-selection-card{
+        width:94%;
+
+        padding:
+            19px 9px 13px;
+
+        border-radius:13px;
+
+        border-width:2px;
+    }
+
+
+    .word-selection-card::before{
+        height:4px;
+    }
+
+
+    .word-selection-card::after{
+        top:8px;
+        right:10px;
+
+        font-size:15px;
+    }
+
+
+    .word-selection-label{
+        margin-bottom:10px;
+
+        font-size:19px;
+    }
+
+
+    .word-options{
+        flex-direction:column;
+
+        gap:6px;
+    }
+
+
+    .word-choice-button{
+        width:100%;
+
+        min-width:0;
+        min-height:36px;
+
+        padding:
+            6px 9px;
+
+        border-radius:8px;
+
+        font-size:12px;
+    }
+
+
+    .word-selection-hint{
+        margin-top:10px;
+
+        font-size:8px;
+    }
+
+
+    /* OTHER PLAYER CHOOSING */
+
+    .choosing-player-card{
+        width:92%;
+
+        padding:
+            15px 10px;
+
+        border-radius:13px;
+    }
+
+
+    .choosing-pencil{
+        margin-bottom:2px;
+
+        font-size:27px;
+    }
+
+
+    .choosing-player-card h2{
+        font-size:18px;
+    }
+
+
+    .choosing-player-card p{
+        margin:
+            3px 0 8px;
+
+        font-size:9px;
+    }
+
+
+    .choosing-dots{
+        gap:4px;
+    }
+
+
+    .choosing-dots span{
+        width:5px;
+        height:5px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media(max-width:420px){
+
+    .game-page{
+        padding:3px;
+    }
+
+
+    .game-topbar{
+        height:50px;
+
+        padding:
+            0 5px;
+
+        margin-bottom:4px;
+    }
+
+
+    .game-logo-draw,
+    .game-logo-arena{
+        font-size:12px;
+    }
+
+
+    .round-badge{
+        min-width:46px;
+
+        padding:
+            2px 4px;
+    }
+
+
+    .round-label{
+        font-size:5px;
+    }
+
+
+    .round-badge strong{
+        font-size:10px;
+    }
+
+
+    .game-word-center{
+        max-width:43%;
+
+        font-size:14px;
+
+        letter-spacing:1px;
+    }
+
+
+    .game-timer{
+        min-width:39px;
+        height:31px;
+
+        font-size:13px;
+    }
+
+
+    .game-layout{
+        gap:3px;
+    }
+
+
+    .canvas-panel{
+        padding:3px;
+
+        border-radius:8px;
+    }
+
+
+    .players-panel,
+    .guesses-panel{
+        height:400px;
+
+        padding:
+            5px 4px;
+
+        border-radius:8px;
+    }
+
+
+    .player-row{
+        min-height:44px;
+
+        padding:
+            3px;
+    }
+
+
+    .player-position{
+        width:15px;
+
+        font-size:8px;
+    }
+
+
+    .game-player-avatar{
+        width:27px;
+        height:27px;
+    }
+
+
+    .player-name{
+        font-size:10px;
+    }
+
+
+    .player-score{
+        font-size:8px;
+    }
+
+
+    .guess-message,
+    .guess-message strong{
+        font-size:8px;
+    }
+
+
+    .guess-input-wrap{
+        height:31px;
+    }
+
+
+    .guess-input-wrap input{
+        font-size:8px;
+    }
+
+
+    .guess-input-wrap button{
+        width:25px;
+        height:25px;
+
+        font-size:11px;
+    }
+}
+
+/* =====================================================
+   FINAL GAME LAYOUT FIXES
+===================================================== */
+
+
+/* =====================================================
+   DESKTOP - REDUCE TOP SPACE
+===================================================== */
+
+@media(min-width:1101px){
+
+    .game-page{
+        height:100vh;
+        min-height:100vh;
+
+        padding:
+            4px 10px 6px;
+
+        overflow:hidden;
+    }
+
+
+    .game-topbar{
+        height:58px;
+
+        margin-bottom:6px;
+
+        padding:
+            0 16px;
+
+        border-radius:18px;
+    }
+
+
+    .game-layout{
+        height:
+            calc(100vh - 68px);
+
+        grid-template-columns:
+            205px
+            minmax(0,1fr)
+            255px;
+
+        gap:10px;
+
+        align-items:stretch;
+    }
+
+
+    .players-panel,
+    .guesses-panel{
+        height:100%;
+    }
+
+
+    .canvas-panel{
+        height:auto;
+
+        align-self:start;
+    }
+}
+
+
+/* =====================================================
+   MEDIUM DESKTOP
+
+   IMPORTANT:
+   KEEP 3 COLUMNS HERE.
+
+   Players | Canvas | Guesses
+===================================================== */
+
+@media(min-width:901px) and (max-width:1100px){
+
+    .game-page{
+        height:100vh;
+        min-height:100vh;
+
+        padding:
+            4px 7px 6px;
+
+        overflow:hidden;
+    }
+
+
+    /* TOP BAR */
+
+    .game-topbar{
+        height:56px;
+
+        margin-bottom:6px;
+
+        padding:
+            0 10px;
+
+        border-radius:15px;
+    }
+
+
+    .game-brand{
+        gap:6px;
+    }
+
+
+    .game-logo-draw,
+    .game-logo-arena{
+        font-size:17px;
+    }
+
+
+    .round-badge{
+        min-width:58px;
+
+        padding:
+            3px 6px;
+    }
+
+
+    .round-label{
+        font-size:7px;
+    }
+
+
+    .round-badge strong{
+        font-size:12px;
+    }
+
+
+    .game-word-center{
+        max-width:42%;
+
+        padding:
+            3px 7px;
+
+        font-size:19px;
+
+        letter-spacing:2px;
+    }
+
+
+    .game-timer{
+        min-width:50px;
+        height:34px;
+
+        font-size:17px;
+    }
+
+
+    /* =================================================
+       THREE COLUMN LAYOUT
+    ================================================= */
+
+    .game-layout{
+        height:
+            calc(100vh - 66px);
+
+        display:grid;
+
+        grid-template-columns:
+            175px
+            minmax(0,1fr)
+            205px;
+
+        grid-template-areas:
+            "players canvas guesses";
+
+        gap:7px;
+
+        align-items:stretch;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        width:100%;
+
+        height:100%;
+        min-height:0;
+
+        padding:8px;
+
+        border-radius:14px;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        width:100%;
+
+        min-width:0;
+        min-height:0;
+
+        align-self:start;
+
+        padding:5px;
+
+        border-radius:14px;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        width:100%;
+
+        height:100%;
+
+        min-height:0;
+        max-height:none;
+
+        padding:8px;
+
+        border-radius:14px;
+    }
+
+
+    /* PLAYERS */
+
+    .game-players-heading{
+        margin-bottom:6px;
+    }
+
+
+    .game-players-heading h3{
+        font-size:14px;
+    }
+
+
+    .game-players-heading span{
+        min-width:22px;
+        height:22px;
+
+        font-size:9px;
+    }
+
+
+    .players-list{
+        max-height:
+            calc(100% - 32px);
+
+        gap:4px;
+    }
+
+
+    .player-row{
+        min-height:45px;
+
+        padding:
+            4px 5px;
+
+        gap:4px;
+    }
+
+
+    .player-position{
+        width:17px;
+
+        font-size:9px;
+    }
+
+
+    .game-player-avatar{
+        width:30px;
+        height:30px;
+    }
+
+
+    .player-name{
+        font-size:11px;
+    }
+
+
+    .player-score{
+        font-size:9px;
+    }
+
+
+    .drawer-icon{
+        font-size:13px;
+    }
+
+
+    /* GUESSES */
+
+    .guesses-panel h3,
+    .guesses-heading h3{
+        font-size:14px;
+    }
+
+
+    .guess-count{
+        min-width:31px;
+        height:21px;
+
+        font-size:9px;
+    }
+
+
+    .guess-progress-wrap{
+        margin-bottom:5px;
+
+        padding:
+            5px 6px;
+    }
+
+
+    .guess-progress-text{
+        font-size:7px;
+    }
+
+
+    .guess-message{
+        padding:
+            5px 6px;
+
+        font-size:10px;
+    }
+
+
+    .guess-input-wrap{
+        height:37px;
+    }
+
+
+    .guess-input-wrap input{
+        font-size:10px;
+    }
+
+
+    .guess-input-wrap button{
+        width:29px;
+        height:29px;
+
+        font-size:14px;
+    }
+}
+
+
+/* =====================================================
+   TABLET
+
+   NOW stacking starts only BELOW 900px.
+
+              Canvas
+       Players | Guesses
+===================================================== */
+
+@media(min-width:601px) and (max-width:900px){
+
+    .game-page{
+        height:auto;
+        min-height:100svh;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+
+        padding:6px;
+    }
+
+
+    .game-topbar{
+        height:56px;
+
+        margin-bottom:6px;
+    }
+
+
+    .game-layout{
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:6px;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        min-height:0;
+
+        padding:5px;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        height:360px;
+        min-height:0;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        height:360px;
+
+        min-height:0;
+        max-height:none;
+    }
+}
+
+/* =====================================================
+   PC + TABLET
+   KEEP ORIGINAL 3-COLUMN DESIGN
+===================================================== */
+
+@media(min-width:601px){
+
+    .game-page{
+        height:100vh;
+        min-height:100vh;
+
+        padding:4px 10px 6px;
+
+        overflow:hidden;
+    }
+
+
+    .game-topbar{
+        height:58px;
+
+        margin-bottom:6px;
+    }
+
+
+    .game-layout{
+        height:calc(100vh - 68px);
+
+        display:grid;
+
+        grid-template-columns:
+            205px
+            minmax(0,1fr)
+            255px;
+
+        grid-template-areas:
+            "players canvas guesses";
+
+        gap:10px;
+
+        align-items:stretch;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        height:100%;
+
+        min-height:0;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        width:100%;
+
+        min-width:0;
+        min-height:0;
+
+        align-self:start;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        height:100%;
+
+        min-height:0;
+        max-height:none;
+    }
+}
+
+
+/* =====================================================
+   TABLET-SIZED WIDTH
+   STILL 3 COLUMNS, JUST MORE COMPACT
+===================================================== */
+
+@media(min-width:601px) and (max-width:1000px){
+
+    .game-page{
+        padding:4px 6px 6px;
+    }
+
+
+    .game-topbar{
+        height:54px;
+
+        padding:0 9px;
+
+        margin-bottom:5px;
+
+        border-radius:14px;
+    }
+
+
+    .game-brand{
+        gap:5px;
+    }
+
+
+    .game-logo-draw,
+    .game-logo-arena{
+        font-size:15px;
+    }
+
+
+    .round-badge{
+        min-width:52px;
+
+        padding:2px 5px;
+    }
+
+
+    .round-label{
+        font-size:6px;
+    }
+
+
+    .round-badge strong{
+        font-size:11px;
+    }
+
+
+    .game-word-center{
+        max-width:40%;
+
+        font-size:17px;
+
+        letter-spacing:1.5px;
+    }
+
+
+    .game-timer{
+        min-width:46px;
+
+        height:32px;
+
+        font-size:15px;
+    }
+
+
+    .game-layout{
+        height:calc(100vh - 63px);
+
+        grid-template-columns:
+            160px
+            minmax(0,1fr)
+            185px;
+
+        gap:6px;
+    }
+
+
+    .players-panel{
+        padding:7px;
+
+        border-radius:13px;
+    }
+
+
+    .canvas-panel{
+        padding:4px;
+
+        border-radius:13px;
+    }
+
+
+    .guesses-panel{
+        padding:7px;
+
+        border-radius:13px;
+    }
+
+
+    .game-players-heading{
+        margin-bottom:5px;
+    }
+
+
+    .game-players-heading h3{
+        font-size:13px;
+    }
+
+
+    .game-players-heading span{
+        min-width:21px;
+        height:21px;
+
+        font-size:8px;
+    }
+
+
+    .player-row{
+        min-height:43px;
+
+        padding:4px;
+
+        gap:4px;
+    }
+
+
+    .player-position{
+        width:15px;
+
+        font-size:8px;
+    }
+
+
+    .game-player-avatar{
+        width:28px;
+        height:28px;
+    }
+
+
+    .player-name{
+        font-size:10px;
+    }
+
+
+    .player-score{
+        font-size:8px;
+    }
+
+
+    .drawer-icon{
+        font-size:12px;
+    }
+
+
+    .guesses-panel h3,
+    .guesses-heading h3{
+        font-size:13px;
+    }
+
+
+    .guess-count{
+        min-width:30px;
+
+        height:20px;
+
+        font-size:8px;
+    }
+
+
+    .guess-progress-wrap{
+        padding:4px 5px;
+
+        margin-bottom:4px;
+    }
+
+
+    .guess-progress-text{
+        font-size:7px;
+    }
+
+
+    .guess-message{
+        padding:4px 5px;
+
+        font-size:9px;
+    }
+
+
+    .guess-input-wrap{
+        height:34px;
+    }
+
+
+    .guess-input-wrap input{
+        font-size:9px;
+    }
+
+
+    .guess-input-wrap button{
+        width:27px;
+        height:27px;
+
+        font-size:12px;
+    }
+}
+
+
+/* =====================================================
+   PHONE / SMALL DEVICE ONLY
+
+       CANVAS
+   PLAYERS | GUESSES
+===================================================== */
+
+@media(max-width:600px){
+
+    .game-page{
+        height:auto;
+        min-height:100svh;
+
+        padding:4px;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+
+    .game-layout{
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:4px;
+
+        align-items:stretch;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        height:430px;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        height:430px;
+    }
+
+     .you-badge{
+        padding:1px 4px;
+
+        font-size:6px;
+
+        border-radius:5px;
+    }
+}
+
+/* =========================================================
+   FINAL RESPONSIVE GAME LAYOUT
+   Keep this block at the VERY END of game.css
+========================================================= */
+
+
+/* =========================================================
+   DESKTOP
+   901px+
+========================================================= */
+
+@media (min-width: 901px){
+
+    .game-page{
+        height:100vh;
+        min-height:100vh;
+
+        padding:4px 10px 6px;
+
+        overflow:hidden;
+    }
+
+
+    .game-topbar{
+        margin-bottom:6px;
+    }
+
+
+    .game-layout{
+        height:calc(100vh - 68px);
+        display:grid;
+
+        grid-template-columns:
+            230px
+            minmax(0,1fr)
+            255px;
+
+        grid-template-areas:
+            "players canvas guesses";
+
+        gap:10px;
+        align-items:stretch;
+    }
+
+
+    .players-panel{
+        grid-area:players;
+
+        min-width:0;
+        min-height:0;
+
+        height:100%;
+    }
+
+
+    .canvas-panel{
+        grid-area:canvas;
+
+        width:100%;
+        min-width:0;
+        min-height:0;
+    }
+
+
+    .guesses-panel{
+        grid-area:guesses;
+
+        min-width:0;
+        min-height:0;
+
+        height:100%;
+    }
+
+}
+
+
+
+/* =========================================================
+   TABLET
+   601px - 900px
+
+   Canvas gets the FULL WIDTH.
+   Players + guesses move below it.
+========================================================= */
+
+@media (min-width:601px) and (max-width:900px){
+
+    .game-page{
+
+        height:auto;
+        min-height:100vh;
+
+        padding:5px 8px 8px;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+
+    .game-topbar{
+
+        width:100%;
+
+        margin-bottom:6px;
+    }
+
+
+    .game-layout{
+
+        width:100%;
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:8px;
+
+        align-items:start;
+    }
+
+
+    /* =========================
+       CANVAS
+    ========================= */
+
+    .canvas-panel{
+
+        grid-area:canvas;
+
+        width:100%;
+        min-width:0;
+
+        align-self:start;
+    }
+
+
+    /* prevent canvas section
+       from being squeezed */
+
+    .canvas-panel canvas{
+
+        display:block;
+
+        width:100%;
+        max-width:100%;
+
+        height:auto;
+    }
+
+
+    /* =========================
+       PLAYERS
+    ========================= */
+
+    .players-panel{
+
+        grid-area:players;
+
+        width:100%;
+        min-width:0;
+
+        height:300px;
+        min-height:300px;
+    }
+
+
+    /* =========================
+       GUESSES
+    ========================= */
+
+    .guesses-panel{
+
+        grid-area:guesses;
+
+        width:100%;
+        min-width:0;
+
+        height:300px;
+        min-height:300px;
+
+        max-height:none;
+    }
+
+}
+
+
+
+/* =========================================================
+   PHONE
+   <=600px
+========================================================= */
+
+@media (max-width:600px){
+
+    .game-page{
+
+        height:auto;
+        min-height:100svh;
+
+        padding:4px;
+
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+
+    .game-topbar{
+
+        width:100%;
+
+        margin-bottom:4px;
+    }
+
+
+    .game-layout{
+
+        width:100%;
+        height:auto;
+
+        display:grid;
+
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+
+        grid-template-areas:
+            "canvas canvas"
+            "players guesses";
+
+        gap:4px;
+
+        align-items:start;
+    }
+
+
+    .canvas-panel{
+
+        grid-area:canvas;
+
+        width:100%;
+        min-width:0;
+    }
+
+
+    .canvas-panel canvas{
+
+        display:block;
+
+        width:100%;
+        max-width:100%;
+
+        height:auto;
+    }
+
+
+    .players-panel{
+
+        grid-area:players;
+
+        width:100%;
+        min-width:0;
+
+        height:430px;
+    }
+
+
+    .guesses-panel{
+
+        grid-area:guesses;
+
+        width:100%;
+        min-width:0;
+
+        height:430px;
+
+        max-height:none;
+    }
+
+}

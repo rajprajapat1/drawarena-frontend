@@ -1,0 +1,942 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.finished-page{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:24px;
+
+    background:
+        linear-gradient(
+            rgba(20,76,170,.16),
+            rgba(20,76,170,.16)
+        ),
+        url("../assets/backgrounds/drawarena-bg.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    font-family:"Nunito",sans-serif;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.finished-card{
+    width:100%;
+    max-width:760px;
+
+    padding:32px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.97);
+
+    box-shadow:
+        0 24px 60px rgba(20,40,80,.22);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.finished-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2388f5 0 25%,
+            #ffbf32 25% 50%,
+            #ff5f8e 50% 75%,
+            #39c47b 75% 100%
+        );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.finished-header{
+    text-align:center;
+
+    margin-bottom:22px;
+}
+
+.finished-trophy{
+    font-size:54px;
+
+    margin-bottom:5px;
+
+    animation:
+        trophyPop .6s ease;
+}
+
+.finished-header h1{
+    margin:0;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:38px;
+    font-weight:700;
+
+    color:#17283b;
+}
+
+.finished-header p{
+    margin:6px 0 0;
+
+    color:#7a8798;
+
+    font-size:14px;
+}
+
+@keyframes trophyPop{
+    0%{
+        transform:scale(.6);
+        opacity:0;
+    }
+
+    70%{
+        transform:scale(1.15);
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+
+/* =========================
+   WINNER CARD
+========================= */
+
+.winner-card{
+    margin-bottom:22px;
+
+    padding:
+        22px 24px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(20,40,80,.14);
+}
+
+.winner-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:5px;
+}
+
+.winner-label{
+    display:inline-block;
+
+    margin-bottom:3px;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:10px;
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    color:#7d8b9c;
+}
+
+.winner-card h2{
+    margin:
+        4px 0 3px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:28px;
+    font-weight:700;
+}
+
+.winner-card > strong{
+    display:block;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:16px;
+}
+
+
+/* CLASSIC */
+
+.classic-winner{
+    border:
+        2px solid #ffc941;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff9df,
+            #fff1b8
+        );
+}
+
+.classic-winner::before{
+    background:
+        linear-gradient(
+            90deg,
+            #ffb900,
+            #ffd95a
+        );
+}
+
+.classic-winner h2{
+    color:#735300;
+}
+
+.classic-winner > strong{
+    color:#a77700;
+}
+
+
+/* RED TEAM */
+
+.red-team-winner{
+    border:
+        2px solid #ef6678;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff0f3,
+            #ffdce3
+        );
+}
+
+.red-team-winner::before{
+    background:#e84c64;
+}
+
+.red-team-winner h2{
+    color:#a72f43;
+}
+
+
+/* BLUE TEAM */
+
+.blue-team-winner{
+    border:
+        2px solid #5d9ee8;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eff6ff,
+            #dcecff
+        );
+}
+
+.blue-team-winner::before{
+    background:#3b8be6;
+}
+
+.blue-team-winner h2{
+    color:#2768b4;
+}
+
+
+/* DRAW */
+
+.team-draw{
+    border:
+        2px solid #a8b2be;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fafc,
+            #edf1f5
+        );
+}
+
+.team-draw::before{
+    background:#8d9bab;
+}
+
+.team-draw h2{
+    color:#435262;
+}
+
+
+/* =========================
+   TEAM RESULT SCORE
+========================= */
+
+.final-team-score{
+    margin-top:9px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:#35465b;
+}
+
+.final-team-score strong{
+    color:#8b98a6;
+
+    font-size:14px;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:12px;
+}
+
+.section-title span{
+    display:inline-block;
+
+    padding:
+        7px 16px;
+
+    border-radius:15px;
+
+    background:#e8f4ff;
+
+    color:#176fd5;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:16px;
+    font-weight:600;
+}
+
+
+/* =========================
+   LEADERBOARD SECTION
+========================= */
+
+.leaderboard-section{
+    margin-top:6px;
+}
+
+.leaderboard-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+}
+
+.leaderboard-row{
+    min-height:56px;
+
+    display:grid;
+
+    grid-template-columns:
+        55px
+        minmax(0,1fr)
+        auto
+        auto;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:
+        8px 14px;
+
+    border-radius:16px;
+
+    background:#f7f9fc;
+
+    border:
+        1px solid #e3e8ef;
+
+    transition:.16s ease;
+}
+
+.leaderboard-row:hover{
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(30,50,80,.08);
+}
+
+
+/* TOP 3 */
+
+.rank-1{
+    background:
+        linear-gradient(
+            135deg,
+            #fff7cf,
+            #fff0a8
+        );
+
+    border-color:#ffc83d;
+}
+
+.rank-2{
+    background:
+        linear-gradient(
+            135deg,
+            #f7f9fb,
+            #e9eef3
+        );
+
+    border-color:#c7d0da;
+}
+
+.rank-3{
+    background:
+        linear-gradient(
+            135deg,
+            #fff0e4,
+            #ffd9bf
+        );
+
+    border-color:#efaa7b;
+}
+
+
+/* RANK */
+
+.rank-box{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-weight:600;
+
+    color:#4d5b6c;
+}
+
+
+/* NAME */
+
+.leaderboard-name{
+    min-width:0;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:#26384d;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+/* SCORE */
+
+.leaderboard-score{
+    font-family:"Fredoka",sans-serif;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:#2388f5;
+
+    white-space:nowrap;
+}
+
+.leaderboard-score span{
+    font-family:"Nunito",sans-serif;
+
+    font-size:10px;
+    font-weight:600;
+
+    color:#8793a2;
+}
+
+
+/* =========================
+   TEAM BADGES IN LEADERBOARD
+========================= */
+
+.final-team-badge{
+    min-width:42px;
+
+    padding:
+        3px 7px;
+
+    border-radius:7px;
+
+    text-align:center;
+
+    font-family:"Nunito",sans-serif;
+
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:.4px;
+}
+
+.final-red{
+    color:#b83b4c;
+
+    background:#ffe0e5;
+
+    border:
+        1px solid #f3a7b3;
+}
+
+.final-blue{
+    color:#256abb;
+
+    background:#dceaff;
+
+    border:
+        1px solid #a9cbf4;
+}
+
+
+/* =========================
+   TEAM SCORES
+========================= */
+
+.team-score-section{
+    margin-top:24px;
+}
+
+.team-score-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+.team-score{
+    min-height:90px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.team-score span{
+    font-family:"Fredoka",sans-serif;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+.team-score strong{
+    margin-top:4px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:24px;
+}
+
+
+/* RED */
+
+.red-team{
+    background:
+        linear-gradient(
+            145deg,
+            #ffe4e9,
+            #ffd2dc
+        );
+
+    border:
+        2px solid #ff7898;
+
+    color:#a5264d;
+}
+
+
+/* BLUE */
+
+.blue-team{
+    background:
+        linear-gradient(
+            145deg,
+            #e8f6ff,
+            #d4edff
+        );
+
+    border:
+        2px solid #6dc5ff;
+
+    color:#176ba6;
+}
+
+
+/* =========================
+   WAITING MESSAGE
+========================= */
+
+.host-waiting{
+    margin:
+        22px 0 0;
+
+    padding:
+        10px 12px;
+
+    border-radius:11px;
+
+    background:#f2f6fa;
+
+    text-align:center;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:#7e8b9b;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.finished-actions{
+    margin-top:26px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+}
+
+.finished-leave,
+.finished-play-again{
+    min-width:170px;
+
+    height:48px;
+
+    border:0;
+
+    border-radius:16px;
+
+    font-family:"Fredoka",sans-serif;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.18s ease;
+}
+
+
+/* LEAVE */
+
+.finished-leave{
+    background:
+        linear-gradient(
+            135deg,
+            #f25f5c,
+            #df4543
+        );
+
+    color:white;
+
+    box-shadow:
+        0 8px 18px rgba(239,83,80,.20);
+}
+
+.finished-leave:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #e95250,
+            #cf3937
+        );
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* PLAY AGAIN */
+
+.finished-play-again{
+    background:
+        linear-gradient(
+            135deg,
+            #28bf73,
+            #169d5b
+        );
+
+    color:white;
+
+    box-shadow:
+        0 8px 18px rgba(32,182,107,.22);
+}
+
+.finished-play-again:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #20ad67,
+            #12894f
+        );
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================
+   TABLET / MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .finished-page{
+        min-height:100svh;
+
+        padding:12px;
+
+        align-items:flex-start;
+    }
+
+    .finished-card{
+        margin:auto;
+
+        padding:
+            26px 16px 20px;
+
+        border-radius:24px;
+    }
+
+    .finished-trophy{
+        font-size:45px;
+    }
+
+    .finished-header h1{
+        font-size:31px;
+    }
+
+    .finished-header p{
+        font-size:12px;
+    }
+
+    .winner-card{
+        padding:
+            19px 16px;
+    }
+
+    .winner-card h2{
+        font-size:24px;
+    }
+
+    .final-team-score{
+        font-size:13px;
+
+        gap:8px;
+    }
+
+    .leaderboard-row{
+        min-height:50px;
+
+        grid-template-columns:
+            45px
+            minmax(0,1fr)
+            auto
+            auto;
+
+        padding:
+            7px 10px;
+
+        gap:7px;
+    }
+
+    .rank-box{
+        font-size:20px;
+    }
+
+    .leaderboard-name{
+        font-size:13px;
+    }
+
+    .leaderboard-score{
+        font-size:14px;
+    }
+
+    .final-team-badge{
+        min-width:36px;
+
+        padding:
+            2px 5px;
+
+        font-size:7px;
+    }
+
+    .team-score{
+        min-height:75px;
+    }
+
+    .team-score strong{
+        font-size:21px;
+    }
+
+    .finished-actions{
+        margin-top:20px;
+
+        gap:10px;
+    }
+
+    .finished-leave,
+    .finished-play-again{
+        min-width:140px;
+
+        height:46px;
+
+        font-size:14px;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:420px){
+
+    .finished-page{
+        padding:8px;
+    }
+
+    .finished-card{
+        padding:
+            23px 12px 16px;
+
+        border-radius:20px;
+    }
+
+    .finished-header{
+        margin-bottom:18px;
+    }
+
+    .finished-header h1{
+        font-size:27px;
+    }
+
+    .winner-card{
+        margin-bottom:18px;
+
+        padding:
+            17px 12px;
+    }
+
+    .winner-card h2{
+        font-size:21px;
+    }
+
+    .winner-card > strong{
+        font-size:14px;
+    }
+
+    .section-title span{
+        font-size:14px;
+    }
+
+    .leaderboard-row{
+        grid-template-columns:
+            38px
+            minmax(0,1fr)
+            auto;
+
+        gap:7px;
+    }
+
+    .leaderboard-row .final-team-badge{
+        grid-column:2;
+
+        justify-self:start;
+    }
+
+    .leaderboard-row .leaderboard-score{
+        grid-column:3;
+        grid-row:1 / span 2;
+    }
+
+    .team-score-grid{
+        grid-template-columns:1fr;
+    }
+
+    .finished-actions{
+        flex-direction:column;
+    }
+
+    .finished-leave,
+    .finished-play-again{
+        width:100%;
+
+        max-width:260px;
+    }
+}
