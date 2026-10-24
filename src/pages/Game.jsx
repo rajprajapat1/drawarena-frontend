@@ -61,6 +61,8 @@ function Game({
     const guessesEndRef=
         useRef(null);
 
+        const serverTimeOffsetRef = useRef(0);
+
     const previousDrawerRef=
         useRef(
             room.currentDrawerId
@@ -176,14 +178,13 @@ function Game({
             guess.trim();
 
 
-        if(
-            !trimmedGuess||
-            isDrawer||
-            !isDrawing||
-            alreadyGuessedCorrectly
-        ){
-            return;
-        }
+        if (
+    !trimmedGuess ||
+    isDrawer ||
+    !isDrawing
+) {
+    return;
+}
 
 
         sendGuess(
@@ -197,64 +198,53 @@ function Game({
     };
 
 
+    useEffect(() => {
+    if (
+        typeof room.serverTime === "number" &&
+        room.serverTime > 0
+    ) {
+        serverTimeOffsetRef.current =
+            room.serverTime - Date.now();
+    }
+}, [room.serverTime]);
+
     /* =========================
        TIMER
     ========================= */
 
-    useEffect(()=>{
+    
+useEffect(() => {
+    if (!isDrawing || !room.turnEndTime) {
+        setTimeLeft(0);
+        return;
+    }
 
-        if(
-            !isDrawing||
-            !room.turnEndTime
-        ){
+    const updateTimer = () => {
+        const serverNow =
+            Date.now() + serverTimeOffsetRef.current;
 
-            setTimeLeft(0);
+        const remaining = Math.max(
+            0,
+            Math.ceil(
+                (room.turnEndTime - serverNow) / 1000
+            )
+        );
 
-            return;
-        }
+        setTimeLeft(remaining);
+    };
 
+    updateTimer();
 
-        const updateTimer=()=>{
+    const interval = setInterval(updateTimer, 250);
 
-            const remaining=
-                Math.max(
-                    0,
-                    Math.ceil(
-                        (
-                            room.turnEndTime-
-                            Date.now()
-                        )/1000
-                    )
-                );
+    return () => {
+        clearInterval(interval);
+    };
+}, [
+    isDrawing,
+    room.turnEndTime
+]);
 
-
-            setTimeLeft(
-                remaining
-            );
-        };
-
-
-        updateTimer();
-
-
-        const interval=
-            setInterval(
-                updateTimer,
-                250
-            );
-
-
-        return()=>{
-
-            clearInterval(
-                interval
-            );
-        };
-
-    },[
-        isDrawing,
-        room.turnEndTime
-    ]);
 
     
 
@@ -1214,9 +1204,8 @@ const guessProgress=
                     <div className="guess-input-block">
 
 
-                        {!isDrawer&&
-                        isDrawing&&
-                        !alreadyGuessedCorrectly&&(
+                        {!isDrawer &&
+                            isDrawing && (
 
                             <div className="guess-input-wrap">
 
@@ -1226,7 +1215,11 @@ const guessProgress=
                                     value={
                                         guess
                                     }
-                                    placeholder="Type your guess..."
+                                    placeholder={
+                                    alreadyGuessedCorrectly
+                                        ? "Send a message..."
+                                        : "Type your guess..."
+                                }
                                     onChange={
                                         event=>
                                             setGuess(
@@ -1260,18 +1253,6 @@ const guessProgress=
 
                             </div>
                         )}
-
-
-                        {!isDrawer&&
-                        isDrawing&&
-                        alreadyGuessedCorrectly&&(
-
-                            <div className="guessed-correct-state">
-                                You guessed correctly!
-                            </div>
-
-                        )}
-
 
                         {!isDrawer&&
                         isChoosingWord&&(
