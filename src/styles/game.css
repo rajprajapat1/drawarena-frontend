@@ -3877,6 +3877,10 @@
         align-items:stretch;
     }
 
+    .game-word-center {
+    white-space: pre-wrap;
+}
+
 
     .players-panel{
         grid-area:players;
